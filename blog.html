@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Matrix Rain</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: black;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background: transparent;
+            color: #0f0;
+            border: 2px solid #0f0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            text-shadow: 0 0 5px #0f0;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .button:hover {
+            background: rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+    <div class="content">
+        <button class="button" onclick="window.location.href='index.html'">Enter the Globe</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas size to window size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Matrix characters
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+        const fontSize = 14;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = Array(columns).fill(1);
+
+        // Set text properties
+        ctx.font = fontSize + 'px monospace';
+
+        function draw() {
+            // Semi-transparent black background for fade effect
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Green text
+            ctx.fillStyle = '#0F0';
+
+            // Loop over drops
+            for (let i = 0; i < drops.length; i++) {
+                // Random character
+                const char = chars[Math.floor(Math.random() * chars.length)];
+                
+                // Draw character
+                ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+                // Reset drop if it reaches bottom or randomly
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                // Move drop down
+                drops[i]++;
+            }
+        }
+
+        // Animation loop
+        setInterval(draw, 33);
+    </script>
+</body>
+</html>
