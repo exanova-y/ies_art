@@ -33,15 +33,15 @@
             padding: 15px 30px;
             font-size: 1.2em;
             background: transparent;
-            color: #00ff9d;
-            border: 2px solid #00ff9d;
+            color: #29969c;
+            border: 2px solid #29969c;
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: bold;
-            text-shadow: 0 0 5px #00ff9d;
+            text-shadow: 0 0 5px #29969c;
             box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
         }
 
@@ -55,7 +55,7 @@
 <body>
     <canvas id="matrix"></canvas>
     <div class="content">
-        <button class="button" onclick="window.location.href='index.html'">Enter the Globe</button>
+        <button class="button" onclick="window.location.href='index.html'">globe</button>
     </div>
 
     <script>
@@ -85,7 +85,7 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             // Green text
-            ctx.fillStyle = '#00ff9d';
+            ctx.fillStyle = '#29969c';
 
             // Loop over drops
             for (let i = 0; i < drops.length; i++) { // drops is the array
