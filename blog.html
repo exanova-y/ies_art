@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Matrix Rain</title>
+    <title>Blog</title>
     <style>
         body {
             margin: 0;
@@ -33,21 +33,21 @@
             padding: 15px 30px;
             font-size: 1.2em;
             background: transparent;
-            color: #0f0;
-            border: 2px solid #0f0;
+            color: #00ff9d;
+            border: 2px solid #00ff9d;
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: bold;
-            text-shadow: 0 0 5px #0f0;
+            text-shadow: 0 0 5px #00ff9d;
             box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
         }
 
         .button:hover {
             background: rgba(0, 255, 0, 0.1);
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            box-shadow: 0 0 20px rgba(107, 240, 183, 0.5);
             transform: scale(1.05);
         }
     </style>
@@ -73,8 +73,8 @@
         // Matrix characters
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
         const fontSize = 14;
-        const columns = Math.floor(canvas.width / fontSize);
-        const drops = Array(columns).fill(1);
+        const columns = Math.floor(canvas.width / fontSize); // number of columns
+        const drops = Array(columns).fill(1); //fill the array with 1
 
         // Set text properties
         ctx.font = fontSize + 'px monospace';
@@ -85,17 +85,17 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             // Green text
-            ctx.fillStyle = '#0F0';
+            ctx.fillStyle = '#00ff9d';
 
             // Loop over drops
-            for (let i = 0; i < drops.length; i++) {
+            for (let i = 0; i < drops.length; i++) { // drops is the array
                 // Random character
                 const char = chars[Math.floor(Math.random() * chars.length)];
                 
                 // Draw character
-                ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+                ctx.fillText(char, i * fontSize, drops[i] * fontSize); // x, y
 
-                // Reset drop if it reaches bottom or randomly
+                // Reset drop if it reaches bottom or randomly with 2.5% chance
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
