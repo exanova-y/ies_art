@@ -62,6 +62,7 @@
             max-width: 800px;
             z-index: 100;
             border: 1px solid white;
+            cursor: move;
         }
 
         .terminal-header {
@@ -72,6 +73,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            user-select: none;
         }
 
         .terminal-title {
@@ -196,6 +198,61 @@
 
         // Animation loop
         setInterval(draw, 33);
+
+        // Draggable terminal functionality
+        const terminal = document.querySelector('.terminal-container');
+        const header = document.querySelector('.terminal-header');
+        
+        let isDragging = false;
+        let currentX;
+        let currentY;
+        let initialX;
+        let initialY;
+        let xOffset = 0;
+        let yOffset = 0;
+
+        header.addEventListener('mousedown', dragStart);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', dragEnd);
+
+        function dragStart(e) {
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+
+            if (e.target === header) {
+                isDragging = true;
+            }
+        }
+
+        function drag(e) {
+            if (isDragging) {
+                e.preventDefault();
+                
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+
+                xOffset = currentX;
+                yOffset = currentY;
+
+                setTranslate(currentX, currentY, terminal);
+            }
+        }
+
+        function setTranslate(xPos, yPos, el) {
+            el.style.transform = `translate(${xPos}px, ${yPos}px)`;
+        }
+
+        function dragEnd(e) {
+            initialX = currentX;
+            initialY = currentY;
+            isDragging = false;
+        }
+
+        // Ensure video is loaded
+        const video = document.querySelector('.terminal-video');
+        video.addEventListener('error', function() {
+            console.error('Video failed to load:', video.error);
+        });
     </script>
 </body>
 </html>
