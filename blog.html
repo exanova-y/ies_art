@@ -47,14 +47,103 @@
 
         .button:hover {
             background: rgba(0, 255, 0, 0.1);
-            box-shadow: 0 0 20px rgba(107, 240, 183, 0.5);
-            transform: scale(1.05);
+        }
+
+        /* Terminal styles */
+        .terminal-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 1px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 800px;
+            z-index: 100;
+            border: 1px solid white;
+        }
+
+        .terminal-header {
+            background: #2a2a2a;
+            padding: 8px;
+            border-radius: 6px 6px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .terminal-title {
+            color: #929292;
+            font-size: 14px;
+            font-family: monospace;
+            display: flex;
+            align-items: center; /* centre text */
+            gap: 10px;
+        }
+
+        .terminal-arrows { 
+            color: #929292;
+            position: absolute;
+            right: 15px;
+        }
+
+        /* .terminal-buttons {
+            display: flex;
+            gap: 6px;
+            margin-left: 8px;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .close { background: #ff5f56; }
+        .minimize { background: #ffbd2e; }
+        .maximize { background: #27c93f; } */
+
+        .terminal-title {
+            color: #929292;
+            margin-left: 20px;
+            font-size: 14px;
+            font-family: monospace;
+        }
+
+        .terminal-content {
+            padding: 1px;
+            position: relative;
+        }
+
+        .terminal-video {
+            width: 100%;
+            border-radius: 0 0 6px 6px;
+            display: block;
         }
     </style>
 </head>
 <body>
     <canvas id="matrix"></canvas>
     <div class="content">
+        <div class="terminal-container">
+            <div class="terminal-header">
+                <!-- <div class="terminal-buttons">
+                    <div class="terminal-button close"></div>
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                </div> -->
+                <div class="terminal-title">stories/intuition-and-rigour.webm</div>
+                <div class="terminal-arrows"> ^ _ □ ⨉</div>
+            </div>
+            <div class="terminal-content">
+                <video class="terminal-video" autoplay loop muted>
+                    <source src="videos/deep_prasad_ascii.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
         <button class="button" onclick="window.location.href='index.html'">globe</button>
     </div>
 
